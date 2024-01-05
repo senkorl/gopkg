@@ -1,14 +1,15 @@
-package github
+package db
 
 import (
 	"bytes"
 	"context"
 	"encoding/json"
-	"github.com/elastic/go-elasticsearch/v8/esapi"
 	"log"
 	"strconv"
 	"strings"
 	"sync"
+
+	"github.com/elastic/go-elasticsearch/v8/esapi"
 )
 import "github.com/elastic/go-elasticsearch/v8"
 

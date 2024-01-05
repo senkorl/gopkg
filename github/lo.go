@@ -9,8 +9,11 @@ import (
 
 func Sli() {
 	names := lo.Uniq[string]([]string{"Samuel", "John", "Samuel"})
-	// []string{"Samuel", "John"}
+	//[]string{"Samuel", "John"}
 	fmt.Println(names)
+
+	namesChunk := lo.Chunk[string]([]string{"Samuel", "John", "Samuel"}, 2)
+	fmt.Println(namesChunk)
 
 	nums := lo.Uniq[int64]([]int64{6, 666, 1234, 666})
 	// []string{6, 666, 1234}
