@@ -10,6 +10,7 @@ require (
 	github.com/go-xorm/xorm v0.7.9
 	github.com/golang-module/carbon/v2 v2.2.3
 	github.com/jinzhu/copier v0.4.0
+	github.com/redis/go-redis/v9 v9.4.0
 	github.com/samber/lo v1.39.0
 	github.com/spf13/cast v1.5.0
 	github.com/thoas/go-funk v0.9.3
@@ -18,6 +19,8 @@ require (
 )
 
 require (
+	github.com/cespare/xxhash/v2 v2.2.0 // indirect
+	github.com/dgryski/go-rendezvous v0.0.0-20200823014737-9f7001d12a5f // indirect
 	github.com/elastic/elastic-transport-go/v8 v8.2.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
