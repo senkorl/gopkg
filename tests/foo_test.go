@@ -31,3 +31,7 @@ func TestFoo(t *testing.T) {
 func TestBar11(t *testing.T) {
 	Bar11()
 }
+
+func TestMapProb(t *testing.T) {
+	MapProb()
+}

@@ -1,4 +1,4 @@
-package hreg
+package hstr
 
 import (
 	"fmt"

@@ -7,6 +7,9 @@ import (
 	"math"
 	"strconv"
 
+	"awesomeProject2/db/xorm_structs"
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/go-xorm/xorm"
 	"github.com/golang-module/carbon/v2"
 	"github.com/spf13/cast"
 )
@@ -118,4 +121,23 @@ func Foo() {
 func Bar11() {
 	a, b := 100, 77
 	fmt.Println(a % b)
+}
+
+func MapProb() {
+	engine, err := xorm.NewEngine("mysql",
+		"lme_test:Yz#x1uVuJ1dambc@(rm-8vbk32m10l69uu922qo.mysql.zhangbei.rds.aliyuncs.com)/yr_box_im?charset=utf8mb4")
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	logs := make([]xorm_structs.ImSwitchStatusLog, 0)
+	err = engine.Table("im_switch_status_log").Desc("id").Limit(100).Find(&logs)
+	if err != nil {
+		return
+	}
+	logMap := map[int64]*xorm_structs.ImSwitchStatusLog{}
+	for _, v := range logs {
+		println(&v)
+		logMap[v.Id] = &v
+	}
+	println(logMap)
 }

@@ -1,6 +1,8 @@
-package htypes
+package htype
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func Str() {
 	sample := "我爱GO"

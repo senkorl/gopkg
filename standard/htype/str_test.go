@@ -1,4 +1,4 @@
-package htypes
+package htype
 
 import "testing"
 
