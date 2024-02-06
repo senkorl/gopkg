@@ -6,7 +6,9 @@ import (
 	"fmt"
 	"math"
 	"strconv"
+	"time"
 
+	"awesomeProject2/db/gorm_structs"
 	"awesomeProject2/db/xorm_structs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
@@ -140,4 +142,40 @@ func MapProb() {
 		logMap[v.Id] = &v
 	}
 	println(logMap)
+}
+
+type MySlice[T int | string | int64] []T
+
+type MyStructs interface {
+	xorm_structs.UserEnt | gorm_structs.UserEnt
+}
+
+func GenericsProb() {
+	strr := "adasd"
+	t := time.Now()
+	fmt.Println(MySlice[int]{1, 2, 3})
+	user := xorm_structs.UserEnt{
+		ID:        1,
+		Name:      "avc",
+		Email:     &strr,
+		Age:       124,
+		Birthday:  &t,
+		CreatedAt: time.Now(),
+		UpdatedAt: time.Now(),
+	}
+	Gu(user)
+}
+
+func Gu[K MyStructs](user K) {
+	fmt.Println(user)
+}
+
+func sw() {
+	a := 2
+	switch a {
+	case 1, 2:
+		fmt.Println(a)
+	default:
+		fmt.Println(-9999)
+	}
 }

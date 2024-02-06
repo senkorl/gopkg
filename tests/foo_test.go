@@ -35,3 +35,11 @@ func TestBar11(t *testing.T) {
 func TestMapProb(t *testing.T) {
 	MapProb()
 }
+
+func TestGenericsProb(t *testing.T) {
+	GenericsProb()
+}
+
+func TestSw(t *testing.T) {
+	sw()
+}
