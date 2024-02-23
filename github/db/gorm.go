@@ -5,13 +5,13 @@ import (
 	"fmt"
 	"time"
 
-	"awesomeProject2/db/gorm_structs"
+	"awesomeProject2/github/db/gorm_structs"
 	"github.com/golang-module/carbon/v2"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-func Demo() {
+func CreateSql() {
 	DSN := "root:root@tcp(127.0.0.1:33060)/default?charset=utf8mb4&parseTime=True&loc=Local"
 	sqlDB, err := sql.Open("mysql", DSN)
 	if err != nil {

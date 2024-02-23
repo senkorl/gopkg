@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"awesomeProject2/db/gorm_structs"
-	"awesomeProject2/db/xorm_structs"
+	"awesomeProject2/github/db/gorm_structs"
+	xorm_structs2 "awesomeProject2/github/db/xorm_structs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 	"github.com/golang-module/carbon/v2"
@@ -131,12 +131,12 @@ func MapProb() {
 	if err != nil {
 		fmt.Println(err.Error())
 	}
-	logs := make([]xorm_structs.ImSwitchStatusLog, 0)
+	logs := make([]xorm_structs2.ImSwitchStatusLog, 0)
 	err = engine.Table("im_switch_status_log").Desc("id").Limit(100).Find(&logs)
 	if err != nil {
 		return
 	}
-	logMap := map[int64]*xorm_structs.ImSwitchStatusLog{}
+	logMap := map[int64]*xorm_structs2.ImSwitchStatusLog{}
 	for _, v := range logs {
 		println(&v)
 		logMap[v.Id] = &v
@@ -147,14 +147,14 @@ func MapProb() {
 type MySlice[T int | string | int64] []T
 
 type MyStructs interface {
-	xorm_structs.UserEnt | gorm_structs.UserEnt
+	xorm_structs2.UserEnt | gorm_structs.UserEnt
 }
 
 func GenericsProb() {
 	strr := "adasd"
 	t := time.Now()
 	fmt.Println(MySlice[int]{1, 2, 3})
-	user := xorm_structs.UserEnt{
+	user := xorm_structs2.UserEnt{
 		ID:        1,
 		Name:      "avc",
 		Email:     &strr,
