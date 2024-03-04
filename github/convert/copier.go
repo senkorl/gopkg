@@ -1,4 +1,4 @@
-package github
+package convert
 
 import "fmt"
 import "github.com/jinzhu/copier"
@@ -17,7 +17,7 @@ func (user *User) DoubleAge() int32 {
 	return 2 * user.Age
 }
 
-// Tags in the destination Struct provide instructions to copier.Copy to ignore
+// Employee Tags in the destination Struct provide instructions to copier.Copy to ignore
 // or enforce copying and to panic or return an error if a field was not copied.
 type Employee struct {
 	// Tell copier.Copy to panic if this field is not copied.
@@ -43,10 +43,13 @@ func Cop() {
 		user      = User{Name: "Jinzhu", Age: 18, Role: "Admin", Salary: 200000}
 		users     = []User{{Name: "Jinzhu", Age: 18, Role: "Admin", Salary: 100000}, {Name: "jinzhu 2", Age: 30, Role: "Dev", Salary: 60000}}
 		employee  = Employee{Salary: 150000}
-		employees = []Employee{}
+		employees []Employee
 	)
 
-	copier.Copy(&employee, &user)
+	err := copier.Copy(&employee, &user)
+	if err != nil {
+		return
+	}
 
 	fmt.Printf("%#v \n", employee)
 	// Employee{
@@ -59,7 +62,7 @@ func Cop() {
 	// }
 
 	// Copy struct to slice
-	err := copier.Copy(&employees, &user)
+	err = copier.Copy(&employees, &user)
 	if err != nil {
 		return
 	}
@@ -85,7 +88,10 @@ func Cop() {
 	// Copy map to map
 	map1 := map[int]int{3: 6, 4: 8}
 	map2 := map[int32]int8{}
-	copier.Copy(&map2, map1)
+	err1 := copier.Copy(&map2, map1)
+	if err1 != nil {
+		return
+	}
 
 	fmt.Printf("%#v \n", map2)
 	// map[int32]int8{3:6, 4:8}

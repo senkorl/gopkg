@@ -1,4 +1,4 @@
-package github
+package convert
 
 import "testing"
 

@@ -1,6 +1,8 @@
-package github
+package _func
 
-import "github.com/thoas/go-funk"
+import (
+	"github.com/thoas/go-funk"
+)
 
 type Foo struct {
 	ID        int

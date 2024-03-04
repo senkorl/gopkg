@@ -1,4 +1,4 @@
-package github
+package _func
 
 import (
 	"fmt"
