@@ -3,6 +3,7 @@ package htime
 import (
 	"fmt"
 	"log"
+	"testing"
 	"time"
 )
 
@@ -42,11 +43,6 @@ func tz() {
 	fmt.Println(t1.Compare(t2))
 }
 
-func Compare() {
-	n := time.Now()
-	t1 := n.AddDate(0, 0, 1)
-	t2 := n.Add(24 * time.Hour)
-	t3 := n.AddDate(0, 0, 2)
-	fmt.Println(t2.Compare(t1))
-	fmt.Println(t2.Compare(t3))
+func Compare(t *testing.T) {
+
 }
