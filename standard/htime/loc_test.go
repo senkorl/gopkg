@@ -2,6 +2,10 @@ package htime
 
 import "testing"
 
-func TestFoo(t *testing.T) {
-	_ = loc()
+func TestTz(t *testing.T) {
+	tz()
+}
+
+func TestCompare(t *testing.T) {
+	Compare()
 }
