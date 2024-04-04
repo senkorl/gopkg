@@ -1,4 +1,4 @@
-package github
+package convert
 
 import "testing"
 
@@ -8,10 +8,6 @@ func TestIterator(t *testing.T) {
 
 func TestGoJson(t *testing.T) {
 	GoJson()
-}
-
-func TestSonic(t *testing.T) {
-	Sonic()
 }
 
 func TestGJson(t *testing.T) {

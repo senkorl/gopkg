@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"time"
 
-	"awesomeProject2/github/db/gorm_structs"
+	"awesomeProject2/db/gorm_structs"
 	"github.com/golang-module/carbon/v2"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"

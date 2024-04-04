@@ -1,10 +1,9 @@
-package github
+package convert
 
 import (
 	"fmt"
 	"log"
 
-	"github.com/bytedance/sonic"
 	gojson "github.com/goccy/go-json"
 	jsoniter "github.com/json-iterator/go"
 	"github.com/tidwall/gjson"
@@ -40,14 +39,6 @@ func Iterator() {
 
 func GoJson() {
 	output, err := gojson.Marshal(&yourSchema)
-	if err != nil {
-		log.Fatal(err)
-	}
-	fmt.Println(string(output))
-}
-
-func Sonic() {
-	output, err := sonic.Marshal(&yourSchema)
 	if err != nil {
 		log.Fatal(err)
 	}

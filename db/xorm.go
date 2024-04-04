@@ -5,7 +5,7 @@ import (
 	"log"
 	"time"
 
-	"awesomeProject2/github/db/xorm_structs"
+	xorm_structs2 "awesomeProject2/db/xorm_structs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 )
@@ -16,7 +16,7 @@ func SyncSql() {
 	if err != nil {
 		log.Fatal(err.Error())
 	}
-	err = engine.Sync(new(xorm_structs.ImSwitchStatusLog))
+	err = engine.Sync(new(xorm_structs2.ImSwitchStatusLog))
 	if err != nil {
 		log.Fatal(err.Error())
 	}
@@ -46,7 +46,7 @@ func GetTaskSql() {
 	}
 
 	engine.ShowSQL(true)
-	task := xorm_structs.Task{}
+	task := xorm_structs2.Task{}
 	_, err = engine.Table("tasks").Where("id = ?", 1011).Get(&task)
 	if err != nil {
 		log.Fatal(err.Error())
