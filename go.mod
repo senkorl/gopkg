@@ -3,7 +3,7 @@ module awesomeProject2
 go 1.20
 
 require (
-	github.com/IBM/sarama v1.43.1
+	github.com/IBM/sarama v1.42.2
 	github.com/elastic/go-elasticsearch/v7 v7.17.7
 	github.com/elastic/go-elasticsearch/v8 v8.7.0
 	github.com/fatih/structs v1.1.0

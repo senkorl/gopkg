@@ -27,7 +27,7 @@ var (
 )
 
 func init() {
-	flag.StringVar(&brokers, "brokers", "1", "Kafka bootstrap brokers to connect to, as a comma separated list")
+	flag.StringVar(&brokers, "brokers", "localhost:9092", "Kafka bootstrap brokers to connect to, as a comma separated list")
 	flag.StringVar(&group, "group", "quickstart", "Kafka consumer group definition")
 	flag.StringVar(&version, "version", sarama.DefaultVersion.String(), "Kafka cluster version")
 	flag.StringVar(&topics, "topics", "quickstart-events", "Kafka topics to be consumed, as a comma separated list")
