@@ -15,9 +15,9 @@ require (
 	github.com/json-iterator/go v1.1.12
 	github.com/rabbitmq/amqp091-go v1.9.0
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475
-	github.com/redis/go-redis/v9 v9.4.0
+	github.com/redis/go-redis/v9 v9.5.1
 	github.com/samber/lo v1.39.0
-	github.com/spf13/cast v1.5.0
+	github.com/spf13/cast v1.6.0
 	github.com/thoas/go-funk v0.9.3
 	github.com/tidwall/gjson v1.17.1
 	gorm.io/driver/mysql v1.4.7

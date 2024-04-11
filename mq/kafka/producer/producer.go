@@ -26,13 +26,13 @@ var (
 	producers = 1
 	verbose   = false
 
-	recordsNumber int64 = 1
+	recordsNumber int64 = 10
 
 	recordsRate = metrics.GetOrRegisterMeter("records.rate", nil)
 )
 
 func init() {
-	flag.StringVar(&brokers, "brokers", "1", "Kafka bootstrap brokers to connect to, as a comma separated list")
+	flag.StringVar(&brokers, "brokers", "localhost:9092", "Kafka bootstrap brokers to connect to, as a comma separated list")
 	flag.StringVar(&version, "version", sarama.DefaultVersion.String(), "Kafka cluster version")
 	flag.StringVar(&topic, "topic", "quickstart-events", "Kafka topics where records will be copied from topics.")
 	flag.IntVar(&producers, "producers", 10, "Number of concurrent producers")
