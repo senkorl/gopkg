@@ -13,10 +13,10 @@ import (
 func main() {
 	sig := make(chan os.Signal)
 	c, _ := rocketmq.NewPushConsumer(
-		consumer.WithGroupName("testGroup"),
-		consumer.WithNsResolver(primitive.NewPassthroughResolver([]string{"127.0.0.1:9876"})),
+		consumer.WithGroupName("gid_test_urb_crm"),
+		consumer.WithNsResolver(primitive.NewPassthroughResolver([]string{"http://47.92.147.114:9876"})),
 	)
-	err := c.Subscribe("test", consumer.MessageSelector{}, func(ctx context.Context,
+	err := c.Subscribe("TOPIC_REFUND_CALLBACK_test", consumer.MessageSelector{}, func(ctx context.Context,
 		msgs ...*primitive.MessageExt) (consumer.ConsumeResult, error) {
 		for i := range msgs {
 			fmt.Printf("subscribe callback: %v \n", msgs[i])
