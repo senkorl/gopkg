@@ -13,10 +13,10 @@ import (
 )
 
 var (
-	srvAddr = "http://0.0.0.0:9876"
-	topic   = "TOPIC_REFUND_CALLBACK_test"
-	tags    = "create_after_sale"
-	key     = "AFTER17129786130000X"
+	srvAddr   = "http://0.0.0.0:9876"
+	topicName = "TOPIC_REFUND_CALLBACK_test"
+	tags      = "create_after_sale"
+	key       = "AFTER17129786130000X"
 
 	body = "{\"payload\":\"{\\\"afterSaleNo\\\":\\\"AFTER17129786130000X\\\",\\\"afterSaleType\\\":2,\\\"bizCode\\\":\\\"mall\\\",\\\"erpAfterSaleStage\\\":0,\\\"mqOrderAddress\\\":{\\\"addressDetail\\\":\\\"\\\",\\\"addressId\\\":\\\"563\\\",\\\"addressName\\\":\\\"\\\",\\\"cityId\\\":\\\"0\\\",\\\"cityName\\\":\\\"Tarragona\\\",\\\"consigneeMobile\\\":\\\"+34 654456652\\\",\\\"consigneeName\\\":\\\"carmen\\\",\\\"country\\\":\\\"ES\\\",\\\"deliverable\\\":false,\\\"districtId\\\":\\\"0\\\",\\\"districtName\\\":\\\"\\\",\\\"extInfo\\\":\\\"{\\\\\\\"addressRemark\\\\\\\":\\\\\\\"\\\\\\\",\\\\\\\"beforeDoor\\\\\\\":false}\\\",\\\"gender\\\":0,\\\"location\\\":\\\"1.2417141,41.1199637\\\",\\\"orderNo\\\":\\\"OD17129766110000\\\",\\\"orderSubNo\\\":\\\"OS17129766110001\\\",\\\"postCode\\\":\\\"43005\\\",\\\"provinceId\\\":\\\"0\\\",\\\"provinceName\\\":\\\"CT\\\",\\\"streetId\\\":\\\"0\\\",\\\"streetName\\\":\\\"Comissaria de la Policia Nacional\\\",\\\"userId\\\":\\\"200236\\\"},\\\"operatorId\\\":\\\"200236\\\",\\\"operatorName\\\":\\\"user\\\",\\\"orderMode\\\":1,\\\"orderNo\\\":\\\"OD17129766110000\\\",\\\"orderSkuList\\\":[{\\\"afterSaleNo\\\":\\\"AFTER17129786130000\\\",\\\"attrInfoList\\\":[{\\\"attrName\\\":\\\"colour\\\",\\\"attrValueName\\\":\\\"Light Brown 50CM\\\"}],\\\"categoryLevel1\\\":28,\\\"given\\\":false,\\\"orderNo\\\":\\\"OD17129766110000\\\",\\\"orderSubNo\\\":\\\"OS17129766110001\\\",\\\"refundAmount\\\":39.00,\\\"returnNum\\\":2,\\\"skuId\\\":\\\"SKU0317127999350101\\\",\\\"skuNum\\\":2}],\\\"orderSubNo\\\":\\\"OS17129766110001\\\",\\\"orderTime\\\":1712976611000,\\\"payNo\\\":\\\"T1PT00120240413025011000001\\\",\\\"refundCoupon\\\":true,\\\"refundMode\\\":1,\\\"refundNo\\\":\\\"RF17129786130001\\\",\\\"refundType\\\":2,\\\"returnFinish\\\":false,\\\"returnInfo\\\":{},\\\"sendMqTimestamp\\\":1712978613087}\",\"headers\":{\"tag\":\"create_after_sale\",\"id\":\"51f88707-efe4-2cae-cc99-36ee0d4113d8\",\"keys\":\"OS17129766110001\",\"timestamp\":1712978613087}}"
 )
@@ -34,7 +34,7 @@ func main() {
 	}
 
 	msg := &primitive.Message{
-		Topic: topic,
+		Topic: topicName,
 		Body:  []byte(body),
 	}
 	msg.WithKeys([]string{key})
