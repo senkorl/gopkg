@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"awesomeProject2/db/xorm/xorm_structs"
+	"awesomeProject/middleware/db/xorm/xorm_structs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 	"github.com/spf13/cast"

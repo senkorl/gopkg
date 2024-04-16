@@ -6,7 +6,7 @@ import (
 	"testing"
 	"time"
 
-	"awesomeProject2/db/xorm/xorm_structs"
+	"awesomeProject/middleware/db/xorm/xorm_structs"
 )
 
 func TestSync(t *testing.T) {

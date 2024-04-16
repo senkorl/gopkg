@@ -1,4 +1,4 @@
-module awesomeProject2
+module awesomeProject
 
 go 1.20
 

@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"awesomeProject2/db/gorm/gorm_structs"
+	"awesomeProject/middleware/db/gorm/gorm_structs"
 	"github.com/golang-module/carbon/v2"
 	"gorm.io/gorm"
 )

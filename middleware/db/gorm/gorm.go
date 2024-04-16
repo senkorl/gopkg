@@ -3,7 +3,7 @@ package gorm
 import (
 	"database/sql"
 
-	"awesomeProject2/db/gorm/gorm_structs"
+	"awesomeProject/middleware/db/gorm/gorm_structs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
