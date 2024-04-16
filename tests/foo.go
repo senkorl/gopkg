@@ -8,8 +8,8 @@ import (
 	"strconv"
 	"time"
 
-	"awesomeProject2/db/gorm_structs"
-	"awesomeProject2/db/xorm_structs"
+	"awesomeProject2/db/gorm/gorm_structs"
+	"awesomeProject2/db/xorm/xorm_structs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 	"github.com/golang-module/carbon/v2"

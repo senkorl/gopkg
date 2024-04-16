@@ -1,0 +1,68 @@
+package xorm
+
+import (
+	"fmt"
+	"log"
+	"testing"
+	"time"
+
+	"awesomeProject2/db/xorm/xorm_structs"
+)
+
+func TestSync(t *testing.T) {
+	xdb := New("root:root@(localhost:33060)/default?charset=utf8mb4")
+	if xdb.err != nil {
+		log.Fatal(xdb.err.Error())
+	}
+	err := xdb.Sync()
+	if err != nil {
+		log.Fatal(err.Error())
+	}
+}
+
+func TestInsert(t *testing.T) {
+	xdb := New("root:root@(localhost:33060)/default?charset=utf8mb4")
+	if xdb.err != nil {
+		log.Fatal(xdb.err.Error())
+	}
+	data := xorm_structs.ImSwitchStatusLog{
+		AgentId:      12,
+		Type:         2,
+		Status:       3,
+		StartAt:      time.Now().Add(-1 * time.Minute),
+		EndAt:        time.Now().Add(5 * time.Minute),
+		OperatorID:   1,
+		OperatorName: "system",
+		CreatedAt:    time.Now(),
+		UpdatedAt:    time.Now(),
+	}
+	err := xdb.Insert(&data)
+	if err != nil {
+		return
+	}
+	fmt.Println(data.Id)
+}
+
+func TestGet(t *testing.T) {
+	xdb := New("root:root@(localhost:33060)/default?charset=utf8mb4")
+	if xdb.err != nil {
+		log.Fatal(xdb.err.Error())
+	}
+	get, err := xdb.Get(1)
+	if err != nil {
+		return
+	}
+	fmt.Println(get)
+}
+
+func TestUpdate(t *testing.T) {
+	xdb := New("root:root@(localhost:33060)/default?charset=utf8mb4")
+	if xdb.err != nil {
+		log.Fatal(xdb.err.Error())
+	}
+	id, err := xdb.Update()
+	if err != nil {
+		return
+	}
+	fmt.Println(id)
+}
