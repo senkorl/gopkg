@@ -61,7 +61,9 @@ func main() {
 		log.Fatal(err)
 	}
 	// gracefule stop producer
-	defer producer.GracefulStop()
+	defer func(producer golang.Producer) {
+		_ = producer.GracefulStop()
+	}(producer)
 	for i := 0; i < 10; i++ {
 		// new a message
 		msg := &golang.Message{
