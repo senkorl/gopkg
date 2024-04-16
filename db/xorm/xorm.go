@@ -20,12 +20,15 @@ func New(dsn string) *Mysql {
 	return &Mysql{db: engine, err: err}
 }
 
+func (x *Mysql) ShowSQL() {
+	x.db.ShowSQL(true)
+}
+
 func (x *Mysql) Sync() error {
 	return x.db.Sync(new(xorm_structs.ImSwitchStatusLog))
 }
 
 func (x *Mysql) Get(id int64) (*xorm_structs.ImSwitchStatusLog, error) {
-	x.db.ShowSQL(true)
 	data := new(xorm_structs.ImSwitchStatusLog)
 	_, err := x.db.Id(id).Get(data)
 	return data, err
@@ -38,14 +41,12 @@ func (x *Mysql) Insert(data *xorm_structs.ImSwitchStatusLog) error {
 }
 
 func (x *Mysql) Update() (int64, error) {
-	updateInfo := map[string]interface{}{
-		"start_at": time.Now(),
+	param := xorm_structs.ImSwitchStatusLog{
+		EndAt: time.Now().Add(2 * time.Minute),
 	}
-	id, err := x.db.Table("im_switch_status_log").
-		In("id", 1).
-		Update(updateInfo)
+	rowsAffected, err := x.db.In("id", 2, 1, 3).Update(param)
 	if err != nil {
 		return 0, err
 	}
-	return id, nil
+	return rowsAffected, nil
 }

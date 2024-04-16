@@ -14,6 +14,7 @@ func TestSync(t *testing.T) {
 	if xdb.err != nil {
 		log.Fatal(xdb.err.Error())
 	}
+	xdb.ShowSQL()
 	err := xdb.Sync()
 	if err != nil {
 		log.Fatal(err.Error())
@@ -36,6 +37,7 @@ func TestInsert(t *testing.T) {
 		CreatedAt:    time.Now(),
 		UpdatedAt:    time.Now(),
 	}
+	xdb.ShowSQL()
 	err := xdb.Insert(&data)
 	if err != nil {
 		return
@@ -48,6 +50,7 @@ func TestGet(t *testing.T) {
 	if xdb.err != nil {
 		log.Fatal(xdb.err.Error())
 	}
+	xdb.ShowSQL()
 	get, err := xdb.Get(1)
 	if err != nil {
 		return
@@ -60,6 +63,7 @@ func TestUpdate(t *testing.T) {
 	if xdb.err != nil {
 		log.Fatal(xdb.err.Error())
 	}
+	xdb.ShowSQL()
 	id, err := xdb.Update()
 	if err != nil {
 		return
