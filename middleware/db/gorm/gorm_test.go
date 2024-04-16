@@ -20,7 +20,7 @@ func TestCreate(t *testing.T) {
 	}
 	email := "foo@qq.com"
 	birthday := time.Now()
-	param := gorm_structs.UserEnt{
+	data := gorm_structs.UserEnt{
 		Name:         "xiaoming11",
 		Email:        &email,
 		Age:          23,
@@ -29,6 +29,9 @@ func TestCreate(t *testing.T) {
 		ActivatedAt:  sql.NullTime{Time: time.Now(), Valid: true},
 		DeletedAt:    gorm.DeletedAt{Time: carbon.Now().AddDay().ToStdTime(), Valid: false},
 	}
-	get := gdb.Create(&param)
-	fmt.Println(get)
+	err := gdb.Create(&data)
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
+	fmt.Println(data)
 }

@@ -3,7 +3,6 @@ package gorm
 import (
 	"database/sql"
 
-	"awesomeProject/middleware/db/gorm/gorm_structs"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -25,7 +24,7 @@ func New(dsn string) *Mysql {
 	return &Mysql{db: gormDB, dsn: dsn, err: err}
 }
 
-func (g *Mysql) Create(param *gorm_structs.UserEnt) *gorm_structs.UserEnt {
-	g.db.Create(param)
-	return param
+func (g *Mysql) Create(data interface{}) error {
+	gdb := g.db.Create(data)
+	return gdb.Error
 }
