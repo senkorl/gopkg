@@ -64,9 +64,9 @@ func TestUpdate(t *testing.T) {
 		log.Fatal(xdb.err.Error())
 	}
 	xdb.ShowSQL()
-	id, err := xdb.Update()
+	rowsAffected, err := xdb.Update()
 	if err != nil {
 		return
 	}
-	fmt.Println(id)
+	fmt.Println(rowsAffected)
 }
