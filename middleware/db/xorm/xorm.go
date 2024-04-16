@@ -2,7 +2,6 @@ package xorm
 
 import (
 	"fmt"
-	"time"
 
 	"awesomeProject/middleware/db/xorm/xorm_structs"
 	_ "github.com/go-sql-driver/mysql"
@@ -41,11 +40,8 @@ func (x *Mysql) Insert(data *xorm_structs.ImSwitchStatusLog) error {
 	return err
 }
 
-func (x *Mysql) Update() (int64, error) {
-	param := xorm_structs.ImSwitchStatusLog{
-		EndAt: time.Now().Add(2 * time.Minute),
-	}
-	rowsAffected, err := x.db.In("id", 2, 1, 3).Update(param)
+func (x *Mysql) Update(update *xorm_structs.ImSwitchStatusLog, ids ...int64) (int64, error) {
+	rowsAffected, err := x.db.In("id", ids).Update(update)
 	if err != nil {
 		return 0, err
 	}

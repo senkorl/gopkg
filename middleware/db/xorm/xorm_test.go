@@ -64,7 +64,10 @@ func TestUpdate(t *testing.T) {
 		log.Fatal(xdb.err.Error())
 	}
 	xdb.ShowSQL()
-	rowsAffected, err := xdb.Update()
+	update := xorm_structs.ImSwitchStatusLog{
+		EndAt: time.Now().Add(2 * time.Minute),
+	}
+	rowsAffected, err := xdb.Update(&update, 2, 1, 3)
 	if err != nil {
 		return
 	}
