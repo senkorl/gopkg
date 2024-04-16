@@ -12,12 +12,13 @@ import (
 
 type Mysql struct {
 	db  *xorm.Engine
+	dsn string
 	err error
 }
 
 func New(dsn string) *Mysql {
 	engine, err := xorm.NewEngine("mysql", dsn)
-	return &Mysql{db: engine, err: err}
+	return &Mysql{db: engine, dsn: dsn, err: err}
 }
 
 func (x *Mysql) ShowSQL() {

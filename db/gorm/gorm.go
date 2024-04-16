@@ -10,6 +10,7 @@ import (
 
 type Mysql struct {
 	db  *gorm.DB
+	dsn string
 	err error
 }
 
@@ -21,7 +22,7 @@ func New(dsn string) *Mysql {
 	gormDB, err := gorm.Open(mysql.New(mysql.Config{
 		Conn: sqlDB,
 	}), &gorm.Config{})
-	return &Mysql{db: gormDB, err: err}
+	return &Mysql{db: gormDB, dsn: dsn, err: err}
 }
 
 func (g *Mysql) Create(param *gorm_structs.UserEnt) *gorm_structs.UserEnt {
