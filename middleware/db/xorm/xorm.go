@@ -28,19 +28,18 @@ func (x *Mysql) Sync() error {
 	return x.db.Sync(new(xorm_structs.ImSwitchStatusLog))
 }
 
-func (x *Mysql) Get(id int64) (*xorm_structs.ImSwitchStatusLog, error) {
-	data := new(xorm_structs.ImSwitchStatusLog)
+func (x *Mysql) Get(id int64, data interface{}) error {
 	_, err := x.db.Id(id).Get(data)
-	return data, err
+	return err
 }
 
-func (x *Mysql) Insert(data *xorm_structs.ImSwitchStatusLog) error {
+func (x *Mysql) Insert(data interface{}) error {
 	affected, err := x.db.Insert(data)
 	fmt.Println("affected: " + cast.ToString(affected))
 	return err
 }
 
-func (x *Mysql) Update(update *xorm_structs.ImSwitchStatusLog, ids ...int64) (int64, error) {
+func (x *Mysql) Update(update interface{}, ids ...int64) (int64, error) {
 	rowsAffected, err := x.db.In("id", ids).Update(update)
 	if err != nil {
 		return 0, err

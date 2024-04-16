@@ -51,7 +51,8 @@ func TestGet(t *testing.T) {
 		log.Fatal(xdb.err.Error())
 	}
 	xdb.ShowSQL()
-	get, err := xdb.Get(1)
+	get := xorm_structs.ImSwitchStatusLog{}
+	err := xdb.Get(1, &get)
 	if err != nil {
 		return
 	}
