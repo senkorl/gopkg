@@ -2,38 +2,29 @@ package gorm
 
 import (
 	"database/sql"
-	"fmt"
-	"time"
 
 	"awesomeProject2/db/gorm/gorm_structs"
-	"github.com/golang-module/carbon/v2"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-func CreateSql() {
-	DSN := "root:root@tcp(127.0.0.1:33060)/default?charset=utf8mb4&parseTime=True&loc=Local"
-	sqlDB, err := sql.Open("mysql", DSN)
+type Mysql struct {
+	db  *gorm.DB
+	err error
+}
+
+func New(dsn string) *Mysql {
+	sqlDB, err := sql.Open("mysql", dsn)
 	if err != nil {
-		fmt.Printf("%s", err)
+		return &Mysql{err: err}
 	}
 	gormDB, err := gorm.Open(mysql.New(mysql.Config{
 		Conn: sqlDB,
 	}), &gorm.Config{})
-	if err != nil {
-		panic("failed to connect database")
-	}
-	email := "foo@qq.com"
-	birthday := time.Now()
-	insertUser := gorm_structs.UserEnt{
-		Name:         "xiaoming11",
-		Email:        &email,
-		Age:          23,
-		Birthday:     &birthday,
-		MemberNumber: sql.NullString{String: "ccccccccllll", Valid: true},
-		ActivatedAt:  sql.NullTime{Time: time.Now(), Valid: true},
-		DeletedAt:    gorm.DeletedAt{Time: carbon.Now().AddDay().ToStdTime(), Valid: false},
-	}
-	gormDB.Create(&insertUser)
-	fmt.Printf("%v", insertUser)
+	return &Mysql{db: gormDB, err: err}
+}
+
+func (g *Mysql) Create(param *gorm_structs.UserEnt) *gorm_structs.UserEnt {
+	g.db.Create(param)
+	return param
 }
