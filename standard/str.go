@@ -1,4 +1,4 @@
-package htype
+package standard
 
 import (
 	"fmt"

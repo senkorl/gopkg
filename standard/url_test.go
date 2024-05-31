@@ -1,4 +1,4 @@
-package hstr
+package standard
 
 import "testing"
 

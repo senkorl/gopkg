@@ -1,4 +1,4 @@
-package htime
+package standard
 
 import (
 	"testing"
