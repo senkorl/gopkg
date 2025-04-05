@@ -26,8 +26,7 @@ func TestTimeFrequency_Execute(t *testing.T) {
 	if err != nil {
 		panic(err)
 	}
-
-	quantity := decimal.NewFromInt(3)
+	quantity := decimal.New(3, 2)
 
 	fee, _ := decimal.NewFromString(".035")
 	taxRate, _ := decimal.NewFromString(".08875")
