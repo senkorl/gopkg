@@ -1,4 +1,4 @@
-package standard
+package reg
 
 import "testing"
 

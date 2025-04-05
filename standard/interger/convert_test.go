@@ -1,4 +1,4 @@
-package standard
+package interger
 
 import (
 	"testing"
