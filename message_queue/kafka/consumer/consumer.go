@@ -68,7 +68,6 @@ func main() {
 	 */
 	config := sarama.NewConfig()
 	config.Version = version
-
 	switch assignor {
 	case "sticky":
 		config.Consumer.Group.Rebalance.GroupStrategies = []sarama.BalanceStrategy{sarama.NewBalanceStrategySticky()}

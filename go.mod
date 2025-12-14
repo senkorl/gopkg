@@ -10,6 +10,7 @@ require (
 	github.com/apache/rocketmq-clients/golang/v5 v5.1.0-rc.1
 	github.com/bluenviron/gortsplib/v4 v4.12.3
 	github.com/bluenviron/mediacommon/v2 v2.0.0
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/elastic/go-elasticsearch/v7 v7.17.7
 	github.com/elastic/go-elasticsearch/v8 v8.7.0
 	github.com/fatih/structs v1.1.0
@@ -19,6 +20,7 @@ require (
 	github.com/gobwas/ws v1.4.0
 	github.com/goccy/go-json v0.10.2
 	github.com/gogf/gf v1.16.9
+	github.com/golang-jwt/jwt/v5 v5.2.3
 	github.com/golang-module/carbon/v2 v2.2.3
 	github.com/jinzhu/copier v0.4.0
 	github.com/json-iterator/go v1.1.12
@@ -39,7 +41,6 @@ require (
 	gorm.io/driver/mysql v1.4.7
 	gorm.io/driver/sqlite v1.5.7
 	gorm.io/gorm v1.25.7-0.20240204074919-46816ad31dde
-	gorm.io/plugin/optimisticlock v1.1.3
 )
 
 require (

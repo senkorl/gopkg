@@ -20,3 +20,7 @@ func reverse(x int) (rev int) {
 func main() {
 	fmt.Println(reverse(123))
 }
+
+func getLow(ip[byte]) {
+	return uint16(ip[2])<<8 + uint16(ip[3])
+}
