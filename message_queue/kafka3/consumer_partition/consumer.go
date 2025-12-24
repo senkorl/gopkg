@@ -7,19 +7,28 @@ import (
 )
 
 func main() {
+	brokers := []string{"localhost:9092"}
+	topic := "dahanghai_click_callback"
+
 	// 创建消费者配置
 	config := sarama.NewConfig()
 	config.Consumer.Return.Errors = true
+	//
+	//config.Net.SASL.Enable = true
+	//config.Net.SASL.Mechanism = sarama.SASLTypePlaintext
+	//config.Net.SASL.User = "alikafka_post-cn-j4g3vu44s00h"
+	//config.Net.SASL.Password = "PLfSoumK6AdybSaL8HDwxPuYZN9jQYqZ"
+	//config.Net.SASL.Handshake = true
 
 	// 创建消费者客户端
-	consumer, err := sarama.NewConsumer([]string{"localhost:9092"}, config) // 替换成你的Kafka地址
+	consumer, err := sarama.NewConsumer(brokers, config) // 替换成你的Kafka地址
 	if err != nil {
 		log.Fatalf("Error creating consumer: %v", err)
 	}
 	defer consumer.Close()
 
 	// 订阅Kafka的Topic
-	partitionConsumer, err := consumer.ConsumePartition("your_topic", 0, sarama.OffsetNewest) // 替换成你要订阅的Topic和Partition
+	partitionConsumer, err := consumer.ConsumePartition(topic, 0, sarama.OffsetNewest) // 替换成你要订阅的Topic和Partition
 	if err != nil {
 		log.Fatalf("Error starting partition consumer: %v", err)
 	}
