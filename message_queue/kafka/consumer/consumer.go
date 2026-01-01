@@ -27,10 +27,10 @@ var (
 )
 
 func init() {
-	flag.StringVar(&brokers, "brokers", "localhost:9092", "Kafka bootstrap brokers to connect to, as a comma separated list")
-	flag.StringVar(&group, "group", "quickstart", "Kafka consumer group definition")
+	flag.StringVar(&brokers, "brokers", "alikafka-post-cn-j4g3vu44s00h-1-vpc.alikafka.aliyuncs.com:9092,alikafka-post-cn-j4g3vu44s00h-2-vpc.alikafka.aliyuncs.com:9092,alikafka-post-cn-j4g3vu44s00h-3-vpc.alikafka.aliyuncs.com:9092", "Kafka bootstrap brokers to connect to, as a comma separated list")
+	flag.StringVar(&group, "group", "dahanghai_jd_finance_click_group", "Kafka consumer group definition")
 	flag.StringVar(&version, "version", sarama.DefaultVersion.String(), "Kafka cluster version")
-	flag.StringVar(&topics, "topics", "quickstart-events", "Kafka topics to be consumed, as a comma separated list")
+	flag.StringVar(&topics, "topics", "dahanghai_click_callback", "Kafka topics to be consumed, as a comma separated list")
 	flag.StringVar(&assignor, "assignor", "range", "Consumer group partition assignment strategy (range, roundrobin, sticky)")
 	flag.BoolVar(&oldest, "oldest", true, "Kafka consumer consume initial offset from oldest")
 	flag.BoolVar(&verbose, "verbose", false, "Sarama logging")
@@ -82,7 +82,10 @@ func main() {
 	if oldest {
 		config.Consumer.Offsets.Initial = sarama.OffsetOldest
 	}
-
+	config.Net.SASL.Enable = true
+	config.Net.SASL.Mechanism = sarama.SASLTypePlaintext
+	config.Net.SASL.User = "alikafka_post-cn-j4g3vu44s00h"
+	config.Net.SASL.Password = "PLfSoumK6AdybSaL8HDwxPuYZN9jQYqZ"
 	/**
 	 * Setup a new Sarama consumer group
 	 */
@@ -127,7 +130,6 @@ func main() {
 
 	sigterm := make(chan os.Signal, 1)
 	signal.Notify(sigterm, syscall.SIGINT, syscall.SIGTERM)
-
 	for keepRunning {
 		select {
 		case <-ctx.Done():

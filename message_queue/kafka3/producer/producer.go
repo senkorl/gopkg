@@ -9,13 +9,43 @@ import (
 )
 
 func main() {
-
+	log.Println("Starting producer...")
 	brokers := []string{"localhost:9092"}
+	//topic := "dahanghai_click_callback"
+	//
+	//brokers := []string{
+	//	"alikafka-post-cn-j4g3vu44s00h-1-vpc.alikafka.aliyuncs.com:9092",
+	//	"alikafka-post-cn-j4g3vu44s00h-2-vpc.alikafka.aliyuncs.com:9092",
+	//	"alikafka-post-cn-j4g3vu44s00h-3-vpc.alikafka.aliyuncs.com:9092",
+	//}
+
+	//brokers := []string{
+	//	"alikafka-post-cn-j4g3vu44s00h-1.alikafka.aliyuncs.com:9093",
+	//	"alikafka-post-cn-j4g3vu44s00h-2.alikafka.aliyuncs.com:9093",
+	//	"alikafka-post-cn-j4g3vu44s00h-3.alikafka.aliyuncs.com:9093",
+	//}
+
 	topic := "dahanghai_click_callback"
 
 	// 创建Kafka生产者配置
 	config := sarama.NewConfig()
-	config.Producer.Return.Successes = true // 配置生产者返回成功信息
+
+	//config.Version = sarama.V3_0_0_0
+	//config.Producer.Partitioner = sarama.NewHashPartitioner
+	config.Producer.Return.Successes = true //是否等待成功和失败后的响应
+	//config.Producer.Return.Errors = true
+	//config.Producer.Timeout = time.Duration(10) * time.Second
+	//
+	//config.Net.MaxOpenRequests = 100
+	//config.Net.DialTimeout = time.Duration(10) * time.Second
+	//config.Net.ReadTimeout = time.Duration(10) * time.Second
+	//config.Net.WriteTimeout = time.Duration(10) * time.Second
+
+	//config.Net.SASL.Enable = true
+	//config.Net.SASL.Mechanism = sarama.SASLTypePlaintext
+	//config.Net.SASL.User = "alikafka_post-cn-j4g3vu44s00h"
+	//config.Net.SASL.Password = "PLfSoumK6AdybSaL8HDwxPuYZN9jQYqZ"
+	//config.Net.SASL.Handshake = true
 
 	// 创建生产者客户端
 	producer, err := sarama.NewSyncProducer(brokers, config) // 替换成你的Kafka地址
@@ -23,6 +53,8 @@ func main() {
 		log.Fatalf("Error creating producer: %v", err)
 	}
 	defer producer.Close()
+
+	log.Println("Producer is ready")
 
 	type OrderInfo struct {
 		OrderID  string
