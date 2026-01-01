@@ -9,21 +9,23 @@ import (
 	"github.com/IBM/sarama"
 )
 
+//	var brokers = []string{
+//		"alikafka-post-cn-j4g3vu44s00h-1-vpc.alikafka.aliyuncs.com:9092",
+//		"alikafka-post-cn-j4g3vu44s00h-2-vpc.alikafka.aliyuncs.com:9092",
+//		"alikafka-post-cn-j4g3vu44s00h-3-vpc.alikafka.aliyuncs.com:9092",
+//	}
+var brokers = []string{"localhost:9092"}
+var topics = []string{"dahanghai_click_callback"}
+var groupID = "dahanghai_click_callback"
+
 func main() {
-
-	brokers := []string{"localhost:9092"}
-
-	//brokers := []string{
-	//	"alikafka-post-cn-j4g3vu44s00h-1-vpc.alikafka.aliyuncs.com:9092",
-	//	"alikafka-post-cn-j4g3vu44s00h-2-vpc.alikafka.aliyuncs.com:9092",
-	//	"alikafka-post-cn-j4g3vu44s00h-3-vpc.alikafka.aliyuncs.com:9092",
-	//}
-
-	topics := []string{"dahanghai_click_callback"}
-	groupID := "dahanghai_click_callback"
-
 	config := sarama.NewConfig()
-
+	config.Version = sarama.V3_9_0_0
+	config.Consumer.Return.Errors = true
+	config.Consumer.Offsets.Initial = sarama.OffsetOldest
+	config.Consumer.Group.Session.Timeout = time.Duration(10) * time.Second
+	config.Consumer.Group.Heartbeat.Interval = time.Duration(3) * time.Second
+	config.Consumer.Group.Rebalance.GroupStrategies = []sarama.BalanceStrategy{sarama.NewBalanceStrategyRoundRobin()}
 	//assignor := "range"
 	//switch assignor {
 	//case "sticky":
@@ -35,16 +37,7 @@ func main() {
 	//default:
 	//	log.Panicf("Unrecognized consumer group partition assignor: %s", assignor)
 	//}
-	//config.Version = sarama.V3_0_0_0
-	config.Producer.Partitioner = sarama.NewHashPartitioner
-	//config.Producer.Return.Successes = false //是否等待成功和失败后的响应
-	//config.Producer.Return.Errors = true
 	//config.Producer.Timeout = time.Duration(10) * time.Second
-
-	config.Net.MaxOpenRequests = 100
-	config.Net.DialTimeout = time.Duration(10) * time.Second
-	config.Net.ReadTimeout = time.Duration(10) * time.Second
-	config.Net.WriteTimeout = time.Duration(10) * time.Second
 
 	group, _ := sarama.NewConsumerGroup(brokers, groupID, config)
 
