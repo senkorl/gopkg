@@ -1,8 +1,8 @@
 #!/bin/bash
 
 BROKER=localhost:9092
-TOPIC=adCallback
-GROUP=testGroup
+TOPIC=dahanghai_click_callback
+GROUP=dahanghai_click_callback
 MESSAGE='{"order_id":1234,"status":"paid"}'
 
 echo "=== 创建 topic ==="
@@ -17,6 +17,13 @@ echo "=== 列出 topic ==="
 docker exec -it kafka /opt/kafka/bin/kafka-topics.sh \
   --bootstrap-server $BROKER \
   --list
+
+echo "=== 查看 topic 详情==="
+docker exec -it kafka /opt/kafka/bin/kafka-topics.sh \
+  --bootstrap-server $BROKER \
+  --describe \
+  --topic $TOPIC
+
 
 echo "=== 生产消息 ==="
 echo $MESSAGE | docker exec -i kafka /opt/kafka/bin/kafka-console-producer.sh \
