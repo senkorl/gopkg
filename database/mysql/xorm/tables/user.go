@@ -1,4 +1,4 @@
-package xorm_structs
+package tables
 
 import (
 	"database/sql"

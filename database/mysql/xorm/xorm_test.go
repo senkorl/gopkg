@@ -1,7 +1,7 @@
 package xorm
 
 import (
-	"awesomeProject/database/xorm/xorm_structs"
+	"awesomeProject/database/mysql/xorm/tables"
 	"fmt"
 	"log"
 	"testing"
@@ -25,7 +25,7 @@ func TestInsert(t *testing.T) {
 	if xdb.err != nil {
 		log.Fatal(xdb.err.Error())
 	}
-	data := xorm_structs.ImSwitchStatusLog{
+	data := tables.ImSwitchStatusLog{
 		AgentId:      12,
 		Type:         2,
 		Status:       3,
@@ -50,7 +50,7 @@ func TestGet(t *testing.T) {
 		log.Fatal(xdb.err.Error())
 	}
 	xdb.ShowSQL()
-	get := xorm_structs.ImSwitchStatusLog{}
+	get := tables.ImSwitchStatusLog{}
 	err := xdb.Get(1, &get)
 	if err != nil {
 		return
@@ -64,7 +64,7 @@ func TestUpdate(t *testing.T) {
 		log.Fatal(xdb.err.Error())
 	}
 	xdb.ShowSQL()
-	update := xorm_structs.ImSwitchStatusLog{
+	update := tables.ImSwitchStatusLog{
 		EndAt: time.Now().Add(2 * time.Minute),
 	}
 	rowsAffected, err := xdb.Update(&update, 2, 1, 3)

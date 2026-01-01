@@ -1,33 +1,12 @@
 package main
 
 import (
+	"awesomeProject/database/mysql/gorm/mysql_relate/tables"
 	"fmt"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
-
-// User 用户表
-type User struct {
-	ID     uint    `gorm:"primaryKey"`
-	Name   string  `gorm:"size:100;not null"`
-	Orders []Order `gorm:"foreignKey:UserID"`      // 一对多关联
-	Groups []Group `gorm:"many2many:user_groups;"` // 多对多关联
-}
-
-// Order 订单表
-type Order struct {
-	ID     uint   `gorm:"primaryKey"`
-	Item   string `gorm:"size:255;not null"`
-	UserID uint   // 外键，指向 User
-}
-
-// Group 群组表
-type Group struct {
-	ID    uint   `gorm:"primaryKey"`
-	Name  string `gorm:"size:100;not null"`
-	Users []User `gorm:"many2many:user_groups;"` // 反向关联
-}
 
 func main() {
 	// 连接 MySQL
@@ -38,19 +17,19 @@ func main() {
 	}
 
 	// 自动迁移表结构
-	db.AutoMigrate(&User{}, &Order{}, &Group{})
+	db.AutoMigrate(&tables.User{}, &tables.Order{}, &tables.Group{})
 
 	// 创建用户
-	user := User{Name: "Alice"}
+	user := tables.User{Name: "Alice"}
 	db.Create(&user)
 
 	// 创建订单并关联到用户
-	order := Order{Item: "Laptop", UserID: user.ID}
+	order := tables.Order{Item: "Laptop", UserID: user.ID}
 	db.Create(&order)
 
 	// 创建群组
-	group1 := Group{Name: "VIP"}
-	group2 := Group{Name: "Premium"}
+	group1 := tables.Group{Name: "VIP"}
+	group2 := tables.Group{Name: "Premium"}
 	db.Create(&group1)
 	db.Create(&group2)
 
@@ -58,7 +37,7 @@ func main() {
 	db.Model(&user).Association("Groups").Append(&group1, &group2)
 
 	// 查询用户及其关联数据
-	var result User
+	var result tables.User
 	db.Preload("Orders").Preload("Groups").First(&result, user.ID)
 
 	// 打印查询结果
