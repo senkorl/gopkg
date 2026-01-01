@@ -1,9 +1,9 @@
 package xorm
 
 import (
+	"awesomeProject/database/xorm/xorm_structs"
 	"fmt"
 
-	"awesomeProject/middleware/db/xorm/xorm_structs"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/go-xorm/xorm"
 	"github.com/spf13/cast"

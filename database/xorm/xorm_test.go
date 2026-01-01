@@ -1,12 +1,11 @@
 package xorm
 
 import (
+	"awesomeProject/database/xorm/xorm_structs"
 	"fmt"
 	"log"
 	"testing"
 	"time"
-
-	"awesomeProject/middleware/db/xorm/xorm_structs"
 )
 
 func TestSync(t *testing.T) {
