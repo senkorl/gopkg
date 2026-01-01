@@ -6,7 +6,6 @@ import (
 	"net/http"
 	_ "net/http/pprof" // 自动注册pprof处理器
 	"runtime"
-	"sync"
 	"time"
 )
 
@@ -26,7 +25,6 @@ func allocateMemory() {
 		data = append(data, make([]byte, 1024*1024)) // 每次分配1MB
 		time.Sleep(100 * time.Millisecond)
 	}
-	sync.Once{}
 }
 
 func main() {

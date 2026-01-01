@@ -240,11 +240,11 @@ func (c *Client) writeLoop(cxt context.Context) {
 	}
 }
 
-//func (c *Client) Done() chan struct{} {
+//helper_func (c *Client) Done() chan struct{} {
 //	return c.done
 //}
 
-//func (c *Client) isDone() bool {
+//helper_func (c *Client) isDone() bool {
 //	c.mu.Lock()
 //	defer c.mu.Unlock()
 //	return c.done == nil

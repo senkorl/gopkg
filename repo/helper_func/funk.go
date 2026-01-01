@@ -1,4 +1,4 @@
-package _func
+package helper_func
 
 import (
 	"github.com/thoas/go-funk"

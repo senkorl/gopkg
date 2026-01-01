@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	db := GetInstance("./sqlite.db")
+	db := GetInstance("./sqlite.database")
 	err := db.AutoMigrate(&Device{}, &DevicePoint{})
 	if err != nil {
 		panic(err)

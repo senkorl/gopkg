@@ -1,4 +1,4 @@
-package date
+package convert_date
 
 import (
 	"fmt"

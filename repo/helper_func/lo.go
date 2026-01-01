@@ -1,4 +1,4 @@
-package _func
+package helper_func
 
 import (
 	"fmt"

@@ -1,4 +1,4 @@
-package convert
+package convert_type
 
 import "fmt"
 import "github.com/jinzhu/copier"
