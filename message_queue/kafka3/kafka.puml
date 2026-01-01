@@ -1,0 +1,51 @@
+@startuml
+skinparam backgroundColor #FFFFFF
+skinparam componentStyle rectangle
+skinparam shadowing false
+
+title Kafka 核心架构图
+
+package "Kafka Cluster" {
+
+  node "Broker 1" {
+    component "Topic A\nPartition 0" as TA_P0
+    component "Topic A\nPartition 1" as TA_P1
+    component "__consumer_offsets\nPartition 0..49" as OFFSETS
+  }
+
+  node "Broker 2" {
+    component "Topic A\nPartition 2" as TA_P2
+    component "Topic B\nPartition 0" as TB_P0
+  }
+
+  node "Broker 3" {
+    component "Topic B\nPartition 1" as TB_P1
+    component "Topic B\nPartition 2" as TB_P2
+  }
+}
+
+package "Producers" {
+  component "Producer Service" as Producer
+}
+
+package "Consumer Group: ad-event-group" {
+  component "Consumer 1" as C1
+  component "Consumer 2" as C2
+}
+
+component "Group Coordinator" as GC
+
+Producer --> TA_P0
+Producer --> TA_P1
+Producer --> TA_P2
+
+TA_P0 --> C1
+TA_P1 --> C2
+TA_P2 --> C1
+
+C1 --> GC : JoinGroup\nHeartbeat
+C2 --> GC : JoinGroup\nHeartbeat
+
+GC --> OFFSETS : commit / fetch offsets
+
+@enduml
