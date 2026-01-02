@@ -172,7 +172,7 @@ func (c *Client) readLoop(ctx context.Context) {
 				}
 				c.readChan <- m.Payload
 				if chanLen := len(c.readChan); chanLen > 1 {
-					c.logger.Debug("ws.read.block", zap.Any("len", chanLen))
+					c.logger.Debug("websocket.read.block", zap.Any("len", chanLen))
 				}
 			}
 		}
