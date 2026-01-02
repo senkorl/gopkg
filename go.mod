@@ -27,7 +27,6 @@ require (
 	github.com/pion/rtp v1.8.11
 	github.com/quocson95/go-onvif v1.0.6
 	github.com/rabbitmq/amqp091-go v1.9.0
-	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475
 	github.com/redis/go-redis/v9 v9.5.1
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/samber/lo v1.39.0
@@ -104,6 +103,7 @@ require (
 	github.com/pion/rtcp v1.2.15 // indirect
 	github.com/pion/sdp/v3 v3.0.10 // indirect
 	github.com/pkg/errors v0.9.1 // indirect
+	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475 // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/tidwall/match v1.1.1 // indirect
 	github.com/tidwall/pretty v1.2.0 // indirect
