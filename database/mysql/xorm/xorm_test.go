@@ -14,7 +14,7 @@ func TestSync(t *testing.T) {
 		log.Fatal(xdb.err.Error())
 	}
 	xdb.ShowSQL()
-	err := xdb.Sync()
+	err := xdb.Sync(new(tables.ImSwitchStatusLog))
 	if err != nil {
 		log.Fatal(err.Error())
 	}

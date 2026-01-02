@@ -1,7 +1,6 @@
 package xorm
 
 import (
-	"awesomeProject/database/mysql/xorm/tables"
 	"fmt"
 
 	_ "github.com/go-sql-driver/mysql"
@@ -24,8 +23,8 @@ func (x *Mysql) ShowSQL() {
 	x.db.ShowSQL(true)
 }
 
-func (x *Mysql) Sync() error {
-	return x.db.Sync(new(tables.ImSwitchStatusLog))
+func (x *Mysql) Sync(t ...interface{}) error {
+	return x.db.Sync(t)
 }
 
 func (x *Mysql) Get(id int64, data interface{}) error {
