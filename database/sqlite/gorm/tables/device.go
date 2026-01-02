@@ -1,11 +1,17 @@
 package tables
 
-import "gorm.io/gorm"
+import (
+	"time"
+)
 
 type Device struct {
-	DeviceID   int    `gorm:"index" json:"device_id"`                          // 设备ID
-	DeviceName string `gorm:"type:varchar(100);primaryKey" json:"device_name"` // 设备名称
-	*gorm.Model
+	ID       int           `gorm:"primaryKey;autoIncrement" json:"id"`
+	DeviceID int           `gorm:"uniqueIndex" json:"device_id"`
+	Name     string        `gorm:"type:varchar(100)" json:"device_name"`
+	Points   []DevicePoint `gorm:"foreignKey:DeviceID;references:DeviceID"`
+
+	CreatedAt time.Time
+	UpdatedAt time.Time
 }
 
 func (Device) TableName() string {

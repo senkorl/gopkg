@@ -3,12 +3,40 @@ package main
 import (
 	"awesomeProject/database/mysql/gorm/tables"
 	"fmt"
+	"log"
+	"testing"
 
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
-func main() {
+func TestCreate(T *testing.T) {
+	dsn := "root:root@tcp(127.0.0.1:33060)/gg?charset=utf8mb4&parseTime=True&loc=Local"
+	gdb := New(dsn)
+	if gdb.err != nil {
+		log.Fatal(gdb.err)
+	}
+	user := tables.User{
+		Name: "Foo",
+	}
+	err := gdb.Create(&user)
+	if err != nil {
+		log.Fatal(err)
+	}
+}
+
+func TestQuery(T *testing.T) {
+	dsn := "root:root@tcp(127.0.0.1:33060)/gg?charset=utf8mb4&parseTime=True&loc=Local"
+	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
+	if err != nil {
+		panic("failed to connect database")
+	}
+	u := &tables.User{}
+	db.Preload("Orders").Preload("Groups").First(u, "id = 3")
+	fmt.Println("User:", u)
+}
+
+func TestRelate(T *testing.T) {
 	// 连接 MySQL
 	dsn := "root:root@tcp(127.0.0.1:33060)/gg?charset=utf8mb4&parseTime=True&loc=Local"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})

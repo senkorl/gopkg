@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"sync"
 
 	"gorm.io/driver/sqlite"
@@ -16,11 +16,12 @@ var (
 
 func GetInstance(dbPath string) *gorm.DB {
 	dbOnce.Do(func() {
+		// SQLite 驱动, 必须 CGO_ENABLED=1
 		db, err := gorm.Open(sqlite.Open(dbPath), &gorm.Config{
 			Logger: logger.Default.LogMode(logger.Info), // 启用调试模式
 		})
 		if err != nil {
-			fmt.Printf("open sqlite failed:%s", err.Error())
+			log.Panicf("open sqlite failed:%s", err.Error())
 		} else {
 			database = db
 		}
