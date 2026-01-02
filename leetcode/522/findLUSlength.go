@@ -41,6 +41,6 @@ func main() {
 	strs := []string{"aba", "cdc", "eae"}
 	fmt.Println(findLUSlength(strs)) // 输出: 3
 
-	strs = []string{"aaa", "aaa", "aa"}
+	strs = []string{"aaa", "aaa", "bitmap"}
 	fmt.Println(findLUSlength(strs)) // 输出: -1
 }
