@@ -1,4 +1,4 @@
-package es8
+package elasticsearch8
 
 import "testing"
 

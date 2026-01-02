@@ -1,4 +1,4 @@
-package es7
+package elasticsearch7
 
 import (
 	"fmt"
