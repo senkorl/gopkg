@@ -1,7 +1,7 @@
 package main
 
 import (
-	"awesomeProject/database/mysql/gorm/mysql_relate/tables"
+	"awesomeProject/database/mysql/gorm/tables"
 	"fmt"
 
 	"gorm.io/driver/mysql"
